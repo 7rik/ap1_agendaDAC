@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<h:head>
+    <title>Lista Agendamentos</title>
+</h:head>
+<h:body>
+	<h:form>
+        <p:dataTable var="agendamento" value="#{agendamentosBean.agendamentos}">
+            <p:column headerText="Paciente">
+                <h:outputText value="#{agendamento.paciente}" />
+            </p:column>
+            <p:column headerText="Médico">
+                <h:outputText value="#{agendamento.medico}" />
+            </p:column>
+            <p:column headerText="Data e Hora da Consulta">
+                <h:outputText value="#{agendamento.dataHoraConsulta}" />
+            </p:column>
+            <p:column headerText="Ações">
+            	<p:commandButton value="Dados da conta"/>
+            	<p:commandButton value="Editar agendamento"/>
+            	<p:commandButton value="Excluir agendamento"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+
+    <p:button value="Novo Agendamento" outcome="gerar_agendamento" />
+</h:body>
+
+
+</html>
