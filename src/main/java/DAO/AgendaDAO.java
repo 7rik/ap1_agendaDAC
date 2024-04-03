@@ -13,6 +13,7 @@ public class AgendaDAO {
 	
 	public static void salvar(Agenda agenda) {
 		EntityManager em = JPAUtil.criarEntityManager();
+		System.out.println("ENTROU NO DAO --- SALVAR");
 		em.getTransaction().begin();
 		em.persist(agenda);
 		em.getTransaction().commit();
@@ -27,10 +28,12 @@ public class AgendaDAO {
 		em.close();
 	}
 	
-	public static void excluir(Agenda agenda) {
+	public static void excluir(Integer id) {
 		EntityManager em = JPAUtil.criarEntityManager();
 		em.getTransaction().begin();
-		em.remove(agenda);
+		System.out.println("PENETROU NO DAO TBM");
+		em.remove(id);
+		System.out.println("REMOVEU O AGENDAMENTO" + id);
 		em.getTransaction().commit();
 		em.close();
 	}

@@ -7,11 +7,12 @@ import javax.persistence.TemporalType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 public class Agenda {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer Id;
 	@Column(name = "paciente", length = 100)
 	private String paciente;

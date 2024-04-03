@@ -2,9 +2,14 @@ package bean;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
 import DAO.AgendaDAO;
 import entidades.Agenda;
 
+@ManagedBean
 public class AgendamentoBean {
 	private Agenda agenda = new Agenda();
 	private List<Agenda> lista;
@@ -12,6 +17,21 @@ public class AgendamentoBean {
 	public String salvar() {
 		AgendaDAO.salvar(agenda);
 		agenda = new Agenda();
+		return null;
+	}
+	
+	public String excluir(Integer id) {
+		try {
+			System.out.println("PENETROU BEAN NO DELETE");
+			AgendaDAO.excluir(id);
+			System.out.println("ELE EXCLUIU O AGENDAMENTO" + id);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exclusão", "Excluído com sucesso"));
+		} catch (Exception e) {
+			System.out.println("NAO EXCLUIU");
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Culpe o programador"));
+		}
+
 		return null;
 	}
 
@@ -29,12 +49,7 @@ public class AgendamentoBean {
 		}
 		return lista;
 	}
-	/* Se a lista Agenda ainda não foi carregada, ela a carrrega
-	 * chamando o método Listar() da classe AgendaDAO. 
-	 * armazena em uma variável de instância chamada lista. Se a lista já 
-	 * foi carregada anteriormente, ele simplesmente retorna a lista existente. 
-	 * Isso pode ser útil para evitar múltiplas consultas ao banco de dados se a lista 
-	 * já foi carregada anteriormente.*/
+
 
 	public void setLista(List<Agenda> lista) {
 		this.lista = lista;

@@ -9,12 +9,12 @@
 
 <h:head><title>Cadastrar Agendamento</title></h:head>
 <h:body>
-	<h:form id="form_cad">
-		<p:outputLabel for="paciente" value="Paciente:" />
+	<h:form id="form">
+		<p:outputLabel value="Paciente:" />
 		<p:inputText id="paciente" value="#{agendamentoBean.agenda.paciente}"/>
 		
-		<p:outputLabel for="medico" value="Médico:" />
-		<p:selectOneMenu id="medico" value="#{agendamentoBean.agenda.medico}">
+		<p:outputLabel value="Médico:" />
+		<p:selectOneMenu value="#{agendamentoBean.agenda.medico}">
 			<f:selectItem itemLabel="Selecione um médico" itemValue="" />
 			<f:selectItem itemLabel="Médico 1" itemValue="Medico1"/>
 			<f:selectItem itemLabel="Médico 2" itemValue="Medico2"/>
@@ -24,7 +24,7 @@
 		<p:outputLabel for="dataHoraConsulta" value="Data e Hora da Consulta:" />
 		<p:calendar id="dataHoraConsulta"/>
 		
-		<p:commandButton value="Salvar" action="#{agendamentoBean.salvar}"/>
+		<p:commandButton value="Salvar" action="#{agendamentoBean.salvar}" update="form"/>
 		
 	</h:form>
 	

@@ -12,7 +12,7 @@
 </h:head>
 <h:body>
 	<h:form>
-        <p:dataTable var="agendamento" value="#{agendamentosBean.agendamentos}">
+        <p:dataTable var="agendamento" value="#{agendamentoBean.lista}">
             <p:column headerText="Paciente">
                 <h:outputText value="#{agendamento.paciente}" />
             </p:column>
@@ -25,7 +25,7 @@
             <p:column headerText="Ações">
             	<p:commandButton value="Dados da conta"/>
             	<p:commandButton value="Editar agendamento"/>
-            	<p:commandButton value="Excluir agendamento"/>
+            	<p:commandButton value="Excluir agendamento" action="#{agendamentoBean.excluir(agendamento.id)}"/>
             </p:column>
         </p:dataTable>
     </h:form>
