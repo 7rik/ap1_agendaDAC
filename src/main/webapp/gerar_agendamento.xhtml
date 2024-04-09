@@ -61,6 +61,8 @@
         <h:outputLabel for="dataHoraConsulta" value="Data e Hora da Consulta:" styleClass="input-label" />
         <p:calendar id="dataHoraConsulta" value="#{agendamentoBean.agenda.dataHoraConsulta}" style="width: 100%" pattern="dd/MM/yyyy HH:mm" showOn="button"/>
         
+        <p:messages id="msgs" showDetail="true" autoUpdate="true"/>
+        
         <p:commandButton value="Salvar" action="#{agendamentoBean.salvar}" update="form" styleClass="button"/>
     </h:form>
     

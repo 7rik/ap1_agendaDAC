@@ -60,5 +60,14 @@ public class AgendaDAO {
 		return a;
 	}
 	
+	public static boolean agendaExistente(Agenda a) {
+		EntityManager em = JPAUtil.criarEntityManager();
+		Query qry = em.createQuery("SELECT COUNT(a) FROM Agenda a WHERE a.dataHoraConsulta = :dataHora AND a.medico = :medico");
+		qry.setParameter("dataHora", a.getDataHoraConsulta());
+		qry.setParameter("medico", a.getMedico());
+		
+		Long count = (Long) qry.getSingleResult();
+		return count > 0;
+	}
 	
 }

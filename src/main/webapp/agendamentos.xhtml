@@ -56,24 +56,24 @@
             </p:column>
             <p:column headerText="Ações">
                 <p:commandButton icon="pi pi-info" action="#{agendamentoBean.mostrarDetalhe(a)}" styleClass="actions-button"/>
-                <p:commandButton icon="pi pi-pencil" styleClass="actions-button"/>
+                <p:commandButton icon="pi pi-pencil" action="#{agendamentoBean.editar(a)}" styleClass="actions-button"/>
                 <p:commandButton icon="pi pi-trash" action="#{agendamentoBean.excluir(a)}" styleClass="actions-button"/>
             </p:column>
         </p:dataTable>
     </h:form>
     
     <p:dialog header="Detalhes do Agendamento" widgetVar="detalhesDialog" modal="true" resizable="false">
-        <h:panelGrid columns="2">
-            <h:outputText value="Paciente:" />
-            <h:outputText value="#{agendamentoBean.agendaSelecionado.paciente}" />
-            
-            <h:outputText value="Médico:" />
-            <h:outputText value="#{agendamentoBean.agendaSelecionado.medico}" />
-            
-            <h:outputText value="Data e Hora:" />
-            <h:outputText value="#{agendamentoBean.agendaSelecionado.dataHoraConsulta}" />
-        </h:panelGrid>
-    </p:dialog>
+    <h:panelGrid columns="3">
+        <h:outputText value="Paciente:" />
+        <h:outputText value="#{agendamentoBean.agendaSelecionado != null ? agendamentoBean.agendaSelecionado.paciente : ''}" />
+        
+        <h:outputText value="Médico:" />
+        <h:outputText value="#{agendamentoBean.agendaSelecionado != null ? agendamentoBean.agendaSelecionado.medico : ''}" />
+        
+        <h:outputText value="Data e Hora:" />
+		<h:outputText value="#{agendamentoBean.agendaSelecionado != null ? agendamentoBean.agendaSelecionado.dataHoraConsulta : ''}" />
+    </h:panelGrid>
+</p:dialog>
 
     <p:button value="Novo Agendamento" outcome="gerar_agendamento" style="width: 200px" styleClass="actions-button"/>
 </h:body>
