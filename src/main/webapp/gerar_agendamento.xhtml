@@ -32,6 +32,7 @@
         .button {
         	width: 100%;
             padding: 10px;
+            margin-top: 10px !important;
             background-color: #007bff;
             color: #fff;
             border: none;
@@ -58,12 +59,12 @@
         </p:selectOneMenu>
         
         <h:outputLabel for="dataHoraConsulta" value="Data e Hora da Consulta:" styleClass="input-label" />
-        <p:calendar id="dataHoraConsulta" value="#{agendamentoBean.agenda.dataHoraConsulta}" pattern="dd/MM/yyyy HH:mm" showOn="button" styleClass="input-field"/>
+        <p:calendar id="dataHoraConsulta" value="#{agendamentoBean.agenda.dataHoraConsulta}" style="width: 100%" pattern="dd/MM/yyyy HH:mm" showOn="button"/>
         
         <p:commandButton value="Salvar" action="#{agendamentoBean.salvar}" update="form" styleClass="button"/>
     </h:form>
     
-    <p:button value="Ver Agendamentos" outcome="agendamentos" style="margin-top: 10px" styleClass="button"/>
+    <p:button value="Ver Agendamentos" outcome="agendamentos" styleClass="button"/>
    </div>
 </h:body>
 </html>
