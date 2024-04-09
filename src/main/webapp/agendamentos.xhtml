@@ -12,20 +12,20 @@
 </h:head>
 <h:body>
 	<h:form>
-        <p:dataTable var="agendamento" value="#{agendamentoBean.lista}">
+        <p:dataTable value="#{agendamentoBean.lista}" var="a">
             <p:column headerText="Paciente">
-                <h:outputText value="#{agendamento.paciente}" />
+                <h:outputText value="#{a.paciente}" />
             </p:column>
             <p:column headerText="Médico">
-                <h:outputText value="#{agendamento.medico}" />
+                <h:outputText value="#{a.medico}" />
             </p:column>
             <p:column headerText="Data e Hora da Consulta">
-                <h:outputText value="#{agendamento.dataHoraConsulta}" />
+                <h:outputText value="#{a.dataHoraConsulta}"/>
             </p:column>
             <p:column headerText="Ações">
-            	<p:commandButton value="Dados da conta"/>
-            	<p:commandButton value="Editar agendamento"/>
-            	<p:commandButton value="Excluir agendamento" action="#{agendamentoBean.excluir(agendamento.id)}"/>
+            	<p:column headerText="Detalhar"><p:commandLink value="Detalhes" action="#{agendamentoBean.mostrarDetalhe(a)}" /></p:column>
+            	<p:commandButton value="Editar agendamento" action="#{agendamentoBean.}"/>
+            	<p:commandButton value="Excluir agendamento" action="#{agendamentoBean.excluir(a)}"/>
             </p:column>
         </p:dataTable>
     </h:form>

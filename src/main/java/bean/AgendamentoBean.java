@@ -20,19 +20,59 @@ public class AgendamentoBean {
 		return null;
 	}
 	
-	public String excluir(Integer id) {
+	public String editar(Agenda aEdit) {
 		try {
-			System.out.println("PENETROU BEAN NO DELETE");
-			AgendaDAO.excluir(id);
-			System.out.println("ELE EXCLUIU O AGENDAMENTO" + id);
+			
+	        Agenda agendaOriginal = getAgendaById(aEdit.getId());
+	        boolean nomeAlterado = !agendaOriginal.getPaciente().equals(aEdit.getPaciente());
+	        System.out.println("NOME ORIGINAL" + agendaOriginal.getPaciente());
+	        System.out.println("NOME EDITADO" + nomeAlterado);
+	        System.out.println("DATA EDITADA" + nomeAlterado);
+//	        if (nomeAlterado || !AgendaDAO.verificarAgendamentoExistente(aEdit)) {
+//	        	System.out.println(aEdit);
+//	            AgendaDAO.edit(aEdit);
+//	            showMessage("Agenda editada com sucesso!", "");
+//	            System.out.println("FOI EDITADO");
+//	            return "agendamentos";
+//	        } else {
+//	            showMessage("Erro! Já existe um agendamento para a mesma data, hora e médico", "");
+//	            System.out.println("NAO FOI EDITADO PQ JA EXISTE UM AGENDAMENTO COM DATA/HORA/MEDICO IGUAL");
+//	            return "agendamentos";
+//	        }
+	    } catch (Exception e) {
+	        System.out.println("Erro" + e.getMessage());
+	        return null;
+	    }
+		return null;
+	}
+	
+	public String excluir(Agenda a) {
+		try {
+			AgendaDAO.excluir(a);
+			agenda = new Agenda();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Exclusão", "Excluído com sucesso"));
 		} catch (Exception e) {
-			System.out.println("NAO EXCLUIU");
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Culpe o programador"));
 		}
 
 		return null;
+	}
+	
+	public Agenda getAgendaById(int id) {
+		return AgendaDAO.acharPorId(id);
+	}
+	
+	public void mostrarDetalhe(Agenda a) {
+		try {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Detalhes",
+							"Lancamento:\n" + "Data e Hora: " + a.getDataHoraConsulta() + "\n"
+									+ "Paciente: " + a.getPaciente() + "\n" + "Médico: " + a.getMedico()));
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Culpe o programador"));
+		}
 	}
 
 	public Agenda getAgenda() {

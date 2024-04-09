@@ -28,12 +28,13 @@ public class AgendaDAO {
 		em.close();
 	}
 	
-	public static void excluir(Integer id) {
+	public static void excluir(Agenda a) {
 		EntityManager em = JPAUtil.criarEntityManager();
 		em.getTransaction().begin();
 		System.out.println("PENETROU NO DAO TBM");
-		em.remove(id);
-		System.out.println("REMOVEU O AGENDAMENTO" + id);
+		a = em.find(Agenda.class, a.getId());
+		em.remove(a);
+		System.out.println("REMOVEU O AGENDAMENTO");
 		em.getTransaction().commit();
 		em.close();
 	}
@@ -45,7 +46,7 @@ public class AgendaDAO {
 		return resultado;
 	}
 	
-	/*PODE ALTERAR SE PREFERIR*/
+	
 	public static long contar() {
 		EntityManager em = JPAUtil.criarEntityManager();
 		Query qry = em.createNamedQuery("select count(a) from Agenda a");
@@ -53,9 +54,13 @@ public class AgendaDAO {
 		em.close();
 		return qtd;
 	}
-	// contar o número de objetos na tabela. 
-	// count() >> retorna o número de resultaados
-	// getSingleResult() é usado para obter esse valor como um resultado único
+	
+	public static Agenda acharPorId(Integer id) {
+		EntityManager em = JPAUtil.criarEntityManager();
+		Agenda a = em.find(Agenda.class, id);
+		em.close();
+		return a;
+	}
 	
 	
 }

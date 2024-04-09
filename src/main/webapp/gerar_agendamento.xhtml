@@ -22,7 +22,7 @@
 		</p:selectOneMenu>
 		
 		<p:outputLabel for="dataHoraConsulta" value="Data e Hora da Consulta:" />
-		<p:calendar id="dataHoraConsulta"/>
+		<p:datePicker id="dataHoraConsulta" value="#{agendamentoBean.agenda.dataHoraConsulta}" pattern="dd.MM.yyyy"/>
 		
 		<p:commandButton value="Salvar" action="#{agendamentoBean.salvar}" update="form"/>
 		

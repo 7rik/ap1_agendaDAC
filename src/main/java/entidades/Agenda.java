@@ -19,6 +19,7 @@ public class Agenda {
 	@Column(name = "medico", length = 100)
 	private String medico;
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "dt_hora_consulta")
 	private Date dataHoraConsulta;
 	
 	@Override
