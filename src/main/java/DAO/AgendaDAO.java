@@ -31,10 +31,8 @@ public class AgendaDAO {
 	public static void excluir(Agenda a) {
 		EntityManager em = JPAUtil.criarEntityManager();
 		em.getTransaction().begin();
-		System.out.println("PENETROU NO DAO TBM");
 		a = em.find(Agenda.class, a.getId());
 		em.remove(a);
-		System.out.println("REMOVEU O AGENDAMENTO");
 		em.getTransaction().commit();
 		em.close();
 	}
